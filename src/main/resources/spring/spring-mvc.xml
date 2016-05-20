@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 修改说明: 1.修改<context:component-scan以确定要加载的controller,默认为com.**.controller 
+	2.修改class=ControllerClassNameHandlerMapping节点的pathPrefix以确定要生成的前缀 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" default-autowire="byName"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- <task:annotation-driven/> -->
+	<mvc:annotation-driven />
+	<!-- 支持上传文件 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	<!-- 自动搜索和@Controller标注的类(事务不生效) -->
+	<context:component-scan base-package="com.rebaomi" />
+	<!-- 搜索Task任务 -->
+	<context:component-scan base-package="com.rebaomi.task" />
+	<!-- 加载配置文件 -->
+	<context:property-placeholder
+		ignore-resource-not-found="true"
+		location="classpath*:config.properties,classpath:db.properties" />
+	<!-- <mvc:interceptors> -->
+		<!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+		<!-- <ref bean ="wapAuthorizeVerification"/> -->
+	<!-- </mvc:interceptors> -->
+
+
+	<!-- velocity解析器 -->
+	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver"> 
+		<property name="contentType" value="text/html;charset=UTF-8" /> <property 
+		name="suffix" value=".vm" /> </bean> -->
+	<!-- velocity引擎 -->
+	<bean id="velocityConfigurer"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<!-- <property name="resourceLoaderPath" value="/WEB-INF/pages/"/> -->
+		<!-- <property name="configLocation" value="/WEB-INF/velocity.properties" 
+			/> -->
+		<property name="resourceLoaderPath" value="/WEB-INF/templates/"/>
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 根据客户端的不同的请求决定不同的view进行响应, 如 /xx.json xx.xml -->
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<!-- 设置为true以忽略对Accept Header的支持 -->
+		<property name="ignoreAcceptHeader" value="false" />
+		<!-- 在没有扩展名时即: "/user/1" 时的默认展现形式 -->
+		<property name="defaultContentType" value="text/html" />
+		<!-- 扩展名至mimeType的映射,即 /user.json => application/json -->
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="hxml" value="application/xml" />
+			</map>
+		</property>
+		<!-- 用于开启 /userinfo/123?format=json 的支持 -->
+		<property name="favorParameter" value="true" />
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+					<property name="order" value="0"></property>
+				</bean>
+				<bean id="viewResolver"
+					class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+					<property name="contentType" value="text/html;charset=UTF-8" />
+					<property name="suffix" value=".vm" />
+					<property name="order" value="1"></property>
+				</bean>
+				<bean
+					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="viewClass"
+						value="org.springframework.web.servlet.view.JstlView" />
+					<property name="prefix" value="/WEB-INF/jsp/" />
+					<property name="suffix" value=".jsp" />
+					<property name="order" value="10"></property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />
+	<!-- 访问静态文件  因为DispatcherServlet拦截"/"，拦截了所有的请求，同时对*.js,*.jpg的访问也就被拦截了-->
+	<!-- 参考：   http://blog.163.com/koko_qiang/blog/static/207213184201382091154584/ -->
+	<!-- <mvc:default-servlet-handler/> -->
+	<!-- 配置静态资源访问路径 -->
+	<mvc:resources mapping="/swagger/**" location="/api/swagger/"/>
+</beans>

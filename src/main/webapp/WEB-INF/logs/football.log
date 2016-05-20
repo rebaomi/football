@@ -1,0 +1,20 @@
+2016-05-18 00:31:53 [ main:0 ] - [ INFO ] MLog clients using log4j logging.
+2016-05-18 00:31:53 [ main:204 ] - [ INFO ] Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+2016-05-18 00:33:07 [ main:0 ] - [ INFO ] MLog clients using log4j logging.
+2016-05-18 00:33:07 [ main:208 ] - [ INFO ] Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+2016-05-18 00:35:31 [ main:0 ] - [ INFO ] MLog clients using log4j logging.
+2016-05-18 00:35:32 [ main:219 ] - [ INFO ] Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+2016-05-18 00:37:59 [ main:0 ] - [ INFO ] MLog clients using log4j logging.
+2016-05-18 00:37:59 [ main:219 ] - [ INFO ] Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+2016-05-18 00:39:39 [ main:0 ] - [ INFO ] MLog clients using log4j logging.
+2016-05-18 00:39:39 [ main:208 ] - [ INFO ] Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+2016-05-18 00:40:00 [ main:0 ] - [ INFO ] MLog clients using log4j logging.
+2016-05-18 00:40:00 [ main:196 ] - [ INFO ] Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+2016-05-18 00:41:33 [ main:0 ] - [ INFO ] MLog clients using log4j logging.
+2016-05-18 00:41:33 [ main:203 ] - [ INFO ] Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+2016-05-18 00:49:19 [ main:0 ] - [ INFO ] MLog clients using log4j logging.
+2016-05-18 00:49:19 [ main:187 ] - [ INFO ] Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+2016-05-18 00:50:29 [ main:0 ] - [ INFO ] MLog clients using log4j logging.
+2016-05-18 00:50:29 [ main:188 ] - [ INFO ] Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+2016-05-18 00:53:24 [ main:0 ] - [ INFO ] MLog clients using log4j logging.
+2016-05-18 00:53:24 [ main:188 ] - [ INFO ] Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
