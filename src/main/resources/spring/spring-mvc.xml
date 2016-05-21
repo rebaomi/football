@@ -92,7 +92,7 @@
 	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />
 	<!-- 访问静态文件  因为DispatcherServlet拦截"/"，拦截了所有的请求，同时对*.js,*.jpg的访问也就被拦截了-->
 	<!-- 参考：   http://blog.163.com/koko_qiang/blog/static/207213184201382091154584/ -->
-	<!-- <mvc:default-servlet-handler/> -->
+	<mvc:default-servlet-handler/>
 	<!-- 配置静态资源访问路径 -->
 	<mvc:resources mapping="/swagger/**" location="/api/swagger/"/>
 </beans>

@@ -37,7 +37,8 @@
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
       } else {
-        url = "http://localhost:8084/api-docs/default/user-api";
+        url = "http://localhost:8084/api-docs/";
+/*         url = "http://localhost:8084/api-docs/default/user-api"; */
       }
 
       hljs.configure({
